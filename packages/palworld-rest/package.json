@@ -1,0 +1,16 @@
+{
+  "name": "@palforge/palworld-rest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#src/*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@palforge/core": "workspace:*",
+    "effect": "4.1.2"
+  }
+}

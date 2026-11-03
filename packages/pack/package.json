@@ -1,0 +1,22 @@
+{
+  "name": "@palforge/pack",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#src/*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@palforge/core": "workspace:*",
+    "@palforge/maintenance": "workspace:*",
+    "@palforge/mappings": "workspace:*",
+    "@palforge/modbuilder": "workspace:*",
+    "@palforge/open-pal": "workspace:*",
+    "@palforge/palworld-rest": "workspace:*",
+    "@palforge/server-image": "workspace:*",
+    "effect": "4.1.2"
+  }
+}

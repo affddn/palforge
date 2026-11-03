@@ -1,0 +1,27 @@
+{
+  "name": "palctl",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#src/*": "./src/*",
+    "#package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "bun build --compile --target=bun-linux-x64 ./src/main.ts --outfile dist/palctl-linux-x64"
+  },
+  "dependencies": {
+    "@effect/platform-bun": "4.1.2",
+    "@palforge/core": "workspace:*",
+    "@palforge/mappings": "workspace:*",
+    "@palforge/open-pal": "workspace:*",
+    "@palforge/pack": "workspace:*",
+    "@palforge/palworld-rest": "workspace:*",
+    "@palforge/save": "workspace:*",
+    "@palforge/unreal-pak": "workspace:*",
+    "effect": "4.1.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4"
+  }
+}

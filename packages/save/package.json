@@ -1,0 +1,19 @@
+{
+  "name": "@palforge/save",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#src/*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@palforge/core": "workspace:*",
+    "@palforge/maintenance": "workspace:*",
+    "@palforge/palworld-rest": "workspace:*",
+    "@palforge/savetool": "workspace:*",
+    "effect": "4.1.2"
+  }
+}

@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: voidzero-dev/setup-vp@cab1ab9eaff52d4857875f4f2c016e36af8f2c76 # v1.22.0
+      - run: vp check
+      - run: vp test --run
+      - run: vp run palctl#build
+
+  modbuilder:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Fails when a pinned download no longer matches its hash or the NuGet lock file drifts.
+      - run: docker build -t palforge-modbuilder tools/modbuilder
+      - run: docker run --rm --network none palforge-modbuilder sh -c 'repak --version && uasset-json; test $? -eq 2'
+
+  server-image:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Fails as soon as upstream's start.sh no longer has the line the start-time guard is inserted before.
+      - run: docker build --build-arg UPSTREAM=thijsvanloef/palworld-server-docker:latest -t palforge-server tools/server-image
+
+  savetool:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Fails when a pinned package no longer matches its hash or the PalworldSaveTools commit is gone.
+      - run: docker build -t palforge-savetool tools/savetool
+      - run: docker run --rm --network none palforge-savetool sh -c 'savetool; test $? -eq 2'

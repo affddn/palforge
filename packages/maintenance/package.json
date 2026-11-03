@@ -1,0 +1,17 @@
+{
+  "name": "@palforge/maintenance",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#src/*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@palforge/core": "workspace:*",
+    "@palforge/palworld-rest": "workspace:*",
+    "effect": "4.1.2"
+  }
+}
